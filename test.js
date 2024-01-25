@@ -25,3 +25,16 @@ private String extractValueFromBusinessCapability(String text) {
     }
     return text;
 }
+
+private String getProcessedNewValue(String newValue, String eventType) {
+    switch (eventType) {
+        case "New":
+            return extractTextBetweenSquareBrackets(newValue);
+        case "Disposition":
+            return extractTextBetweenParentheses(newValue);
+        case "Capability":
+            return extractValueFromBusinessCapability(newValue);
+        default:
+            return newValue;
+    }
+}
