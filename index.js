@@ -11,8 +11,10 @@ const userURL = '/users';
 const productRouter = require('./router/product');
 const userRouter = require('./router/user');
 const {Schema} = require("mongoose");
+// const cors = require('cors');
 
 // Server Middleware
+// server.use(cors)
 server.use(express.json())
 server.use(morgan('dev'));
 server.use(baseURL+productURL, productRouter.router);
