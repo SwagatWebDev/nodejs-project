@@ -66,7 +66,25 @@ exports.updatePartialProduct = async (req, res) => {
     }
 };
 
-// Controller function to delete a product by its ID
+// Controller function to delete a product by its ID with isActive Flag
+exports.deleteProduct = async (req, res) => {
+   try{
+       const id = req.params.id;
+       const deletedProduct = await Product.deleteOne({_id: id});
+
+       if(!deletedProduct) {
+           return res.status(404).json({error: "Product not found"})
+       }
+
+       const updatedResult = await Product.findOneAndUpdate({_id: id}, req.body, {new: true});
+       res.status(200).json(updatedResult);
+   } catch (error) {
+       console.error('Error deleting Product:', error);
+       res.status(500).json({error: 'Internal Server Error'})
+   }
+};
+
+/*// Controller function to delete a product by its ID
 exports.deleteProduct = async (req, res) => {
     // Extract the product ID from the request parameters
     const id = req.params.id;
@@ -79,7 +97,7 @@ exports.deleteProduct = async (req, res) => {
         // If there's an error during the operation, send an error response
         res.status(500).json({ error: 'Server error' });
     }
-};
+};*/
 
 /**
 Deleting or modifying the _id field in MongoDB isn't recommended because it's immutable

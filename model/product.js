@@ -10,6 +10,7 @@ const productSchema = new Schema({
     stock: Number,
     brand: {type: String, required: true},
     category: {type: String, required: true},
+    isActive: {type: Boolean, required: true},
     thumbnail: {type: String, required: true},
     images: [String]
 })

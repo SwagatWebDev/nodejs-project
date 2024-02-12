@@ -1,10 +1,10 @@
 const express = require('express');
 
-const userController = require('../controller/user')
+const orderController = require('../controller/order')
 
 const router = express.Router();
 
 router
-    .get('/', userController.getAllUsers);
+    .get('/', orderController.getAllOrders);
 
 exports.router = router;
