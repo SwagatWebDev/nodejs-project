@@ -14,6 +14,7 @@ const userRouter = require('./router/user');
 const orderRouter = require('./router/order');
 const {Schema} = require("mongoose");
 const {getUsersWithOrders} = require("./controller/user");
+const {getOrderFilter} = require("./controller/order");
 // const cors = require('cors');
 
 // Server Middleware
@@ -26,6 +27,8 @@ server.use(baseURL+orderURL, orderRouter.router);
 console.log('DB Password', process.env.DB_PASSWORD);
 
 server.use(baseURL+ '/user-with-order', getUsersWithOrders);
+
+server.use(baseURL+ '/order-with-name', getOrderFilter);
 
 // starting server
 server.listen(process.env.PORT, () => {
